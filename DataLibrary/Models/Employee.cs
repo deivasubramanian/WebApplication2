@@ -7,6 +7,7 @@ namespace DataLibrary.Models
 {
     public class Employee
     {
+        // Guid?
         public int Id { get; set; }
         [Required]
         [MaxLength(200)]
@@ -15,6 +16,7 @@ namespace DataLibrary.Models
         [MaxLength(200)]
         public string LastName { get; set; }
         public int Age { get; set; }
+        // Relationship to another table?
         public int Role { get; set; }
     }
 }

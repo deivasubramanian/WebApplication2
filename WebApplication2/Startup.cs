@@ -12,6 +12,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DataLibrary;
+using WebApplication2.Services;
+using DataLibrary.Repositories;
+using DataLibrary.Queries;
 
 namespace WebApplication2
 {
@@ -31,12 +34,12 @@ namespace WebApplication2
             services.AddDbContext<EmployeeContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
-
-          
             });
 
-            services.AddScoped<IEmployeeSave, EmployeeSave>(p => new EmployeeSave(p.GetRequiredService<EmployeeContext>()));
-
+            services.AddScoped<IEmployeeSave, EmployeeSave>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IBaseRepo<Employee, int, EmployeeQuery>, EmployeeRepo>();
+            services.AddScoped<IEmployeeSave, EmployeeSave>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
