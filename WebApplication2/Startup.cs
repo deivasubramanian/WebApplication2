@@ -35,7 +35,7 @@ namespace WebApplication2
           
             });
 
-            services.AddScoped<IEmployeeSave, EmployeeSave>();
+            services.AddScoped<IEmployeeSave, EmployeeSave>(p => new EmployeeSave(p.GetRequiredService<EmployeeContext>()));
 
         }
 
